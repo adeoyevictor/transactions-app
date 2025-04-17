@@ -98,6 +98,7 @@ const Transactions = () => {
     });
   }, [filter, transactions]);
 
+  // debounce 
   useEffect(() => {
     const handler = setTimeout(() => {
       setFilter((prev) => ({

@@ -22,6 +22,12 @@ const Login = () => {
     navigate(ROUTE_KEYS.TRANSACTIONS);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
+
   const isLoginDisabled = !formData.username || !formData.password;
   return (
     <div className="max-w-[400px] mx-auto p-4">
@@ -37,14 +43,13 @@ const Login = () => {
             </label>
             <Input
               value={formData.username}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, username: e.target.value })
-              }
+              onChange={handleChange}
               placeholder="Username"
               className="w-full"
               type="text"
               size="large"
               id="username"
+              name="username"
             />
           </div>
 
@@ -54,9 +59,8 @@ const Login = () => {
             </label>
             <Input
               value={formData.password}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              onChange={handleChange}
+              name="password"
               placeholder="Password"
               className="w-full"
               type="password"

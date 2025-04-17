@@ -55,6 +55,12 @@ const NewTransaction = () => {
 
   const isSubmitDisabled =
     !formData.amount || !formData.status || !formData.date;
+
+  const filterOptions = ['pending', 'completed', 'failed'];
+  const options = filterOptions.map(option => ({
+    value: option,
+    label: <span>{option.charAt(0).toUpperCase() + option.slice(1)}</span>
+  }))
   return (
     <div className="max-w-[600px] mx-auto p-4">
       <Button
@@ -97,11 +103,7 @@ const NewTransaction = () => {
                 setFormData((prev) => ({ ...prev, status: value }));
               }}
               value={formData.status}
-              options={[
-                { value: "pending", label: <span>Pending</span> },
-                { value: "completed", label: <span>Completed</span> },
-                { value: "failed", label: <span>Failed</span> },
-              ]}
+              options={options}
               size="large"
               placeholder="Select Status"
               allowClear

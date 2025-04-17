@@ -21,6 +21,13 @@ const Filters = ({
   filter,
   setFilter
 }: Props) => {
+
+  const filterOptions = ['all', 'pending', 'completed', 'failed'];
+  const options = filterOptions.map(option => ({
+    value: option,
+    label: <span>{option.charAt(0).toUpperCase() + option.slice(1)}</span>
+  }))
+
   return (
     <div
       className={`flex flex-wrap items-center gap-4 my-4 transition-all duration-500 ease-in-out transform ${
@@ -51,12 +58,7 @@ const Filters = ({
           setFilter({ ...filter, status: value });
         }}
         value={filter.status}
-        options={[
-          { value: "all", label: <span>All</span> },
-          { value: "pending", label: <span>Pending</span> },
-          { value: "completed", label: <span>Completed</span> },
-          { value: "failed", label: <span>Failed</span> },
-        ]}
+        options={options}
       />
       <RangePicker
         className="w-full max-w-[200px]"
