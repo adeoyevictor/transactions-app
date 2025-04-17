@@ -4,7 +4,6 @@ import dayjs, { Dayjs } from "dayjs";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../../components/logout-button";
-import { TransactionType } from "../../utils/types";
 import { DEFAULT_TOAST_OPTIONS, ROUTE_KEYS } from "../../utils/constants";
 import { toast } from "react-toastify";
 
@@ -34,11 +33,7 @@ const NewTransaction = () => {
           "Content-Type": "application/json",
         },
       });
-      const data: {
-        message: string;
-        status: number;
-        data: TransactionType;
-      } = await res.json();
+      await res.json();
       toast.success("Transactions Created Successfully", {
         ...DEFAULT_TOAST_OPTIONS,
       });

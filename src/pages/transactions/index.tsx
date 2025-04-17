@@ -1,4 +1,4 @@
-import { Table, Tag, Button } from "antd";
+import { Table, Tag, Button, Skeleton } from "antd";
 import type { TableProps } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
@@ -177,13 +177,16 @@ const Transactions = () => {
           Add New
         </Button>
       </div>
-
-      <Table
-        dataSource={filteredData}
-        columns={columns}
-        rowKey="id"
-        scroll={{ x: "max-content" }}
-      />
+      {loading ? (
+        <Skeleton active paragraph={{ rows: 10 }}  />
+      ) : (
+        <Table
+          dataSource={filteredData}
+          columns={columns}
+          rowKey="id"
+          scroll={{ x: "max-content" }}
+        />
+      )}
 
       <LogoutButton />
     </div>
